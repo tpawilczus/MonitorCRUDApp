@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+
+<h2>Users from (in memory) DB</h2>
+
+<div th:each="user : ${allUsersFromDB}">
+    <div th:text="${user.id}"></div>
+    <div th:text="${user.firstName}"></div>
+    <div th:text="${user.lastName}"></div>
+    <div th:text="${user.yob}"></div>
+    <div th:text="${user.monitor}"></div>
+    <a th:href="@{/user/delete/{id}(id=${user.id})}" >Delete</a>
+    <a th:href="@{/user/edit/{id}(id=${user.id})}">Update</a>
+</div>
+<a th:href = "@{/user/add}"> New User</a>
+
+
+</div>
+
+</body>
+</html>
+
+

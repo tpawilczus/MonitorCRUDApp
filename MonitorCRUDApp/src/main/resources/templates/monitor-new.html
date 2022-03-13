@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Monitor Management System</title>
+
+</head>
+<body>
+<h2>Add Monitor</h2>
+
+<form action="#" method="post" th:action="@{/monitor/add}" th:object="${monitor}">
+  <table>
+    <tbody>
+    <tr>
+      <td>
+        Name
+        <input type="text" name="name" th:field="*{name}" th:value="*{name}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Size <input type="text" name="size" th:field="*{size}" th:value="*{size}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('size')}" th:errors="*{size}">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Refresh Rate
+        <input type="text" name="refreshRate" th:field="*{refreshRate}" th:value="*{refreshRate}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('refreshRate')}" th:errors="*{refreshRate}">
+      </td>
+    </tr>
+    <tr th:each="user : ${users}">
+      <td><input type="checkbox"
+                 th:name="users"
+                 th:value="${user.getId()}"
+                 th:checked="false" />
+      </td>
+      <td th:text="${user.getId()}" ></td>
+      <td th:text="${user.getFirstName()}"></td>
+      <td th:text="${user.getLastName()}"></td>
+      <td th:text="${user.getYob()}" ></td>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" name="submit" th:value="Edit">Save Monitor</button>
+        <button type="button" name="cancel" th:onclick="window.history.back()">Cancel</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</form>
+<a th:href = "@{/monitor}"> Back to Monitor List</a>
+</body>
+</html>

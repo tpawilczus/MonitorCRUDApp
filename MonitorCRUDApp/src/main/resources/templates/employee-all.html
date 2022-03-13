@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>All employees</title>
+</head>
+<body>
+
+<h2>Employees from (in memory) DB</h2>
+
+<div th:each="employee : ${allEmployeesFromDB}">
+    <div th:text="${employee.id}"></div>
+    <div th:text="${employee.firstName}"></div>
+    <div th:text="${employee.lastName}"></div>
+    <div th:text="${employee.yoe}"></div>
+    <div th:each="monitor: ${employee.monitors}">
+        <tr>
+            <td th:text="${monitor.toString()}"></td>
+        </tr>
+    </div>
+    <a th:href="@{/employee/delete/{id}(id=${employee.id})}" >Delete</a>
+    <a th:href="@{/employee/edit/{id}(id=${employee.id})}">Update</a>
+</div>
+<a th:href = "@{/employee/add}"> New Employee</a>
+
+
+</div>
+
+</body>
+</html>
+
+
+
+

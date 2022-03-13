@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Producer</title>
+</head>
+<body>
+
+<h2>Edit producer</h2>
+
+<form action="#" method="post" th:action="@{/producer/edit/{id}(id=${producerToEdit.id})}" th:object="${producerToEdit}">
+  <table>
+    <tbody>
+    <tr>
+      <td>
+        Name
+        <input type="text" name="name" th:field="*{name}" th:value="*{name}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Country <input type="text" name="country" th:field="*{country}" th:value="*{country}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Year of founding
+        <input type="text" name="yof" th:field="*{yof}" th:value="*{yof}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('yof')}" th:errors="*{yof}">
+      </td>
+    </tr>
+    <tr th:each="monitor : ${monitors}">
+      <td><input type="checkbox"
+                 th:name="monitors"
+                 th:value="${monitor.getId()}"
+                 th:checked="${producerToEdit.getMonitors()}" />
+      </td>
+      <td th:text="${monitor.getId()}" ></td>
+      <td th:text="${monitor.getName()}"></td>
+      <td th:text="${monitor.getSize()}"></td>
+      <td th:text="${monitor.getRefreshRate()}" ></td>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" name="submit" th:value="Edit">Update</button>
+        <button type="button" name="cancel" th:onclick="window.history.back()">Cancel</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+<a th:href = "@{/producer}"> Back to Producer List</a>
+</body>
+</html>
+
+

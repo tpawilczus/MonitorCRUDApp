@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+
+<h2>Edit employee</h2>
+
+<form action="#" method="post" th:action="@{/employee/edit/{id}(id=${employeeToEdit.id})}" th:object="${employeeToEdit}">
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                First Name
+                <input type="text" name="firstName" th:field="*{firstName}" th:value="*{firstName}">
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Last Name
+                <input type="text" name="lastName" th:field="*{lastName}" th:value="*{lastName}">
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Year of employment
+                <input type="text" name="yoe" th:field="*{yoe}" th:value="*{yoe}">
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('yoe')}" th:errors="*{yoe}">
+            </td>
+        </tr>
+        <tr th:each="monitor : ${monitors}">
+            <td><input type="checkbox"
+                       th:name="monitors"
+                       th:value="${monitor.getId()}"
+                       th:checked="${employeeToEdit.getMonitors()}" />
+            </td>
+            <td th:text="${monitor.getId()}" ></td>
+            <td th:text="${monitor.getName()}"></td>
+            <td th:text="${monitor.getSize()}"></td>
+            <td th:text="${monitor.getRefreshRate()}" ></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" name="submit" th:value="Edit">Update</button>
+                <button type="button" name="cancel" th:onclick="window.history.back()">Cancel</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<a th:href = "@{/employee}"> Back to Employee List</a>
+</body>
+</html>
+
+
+
+

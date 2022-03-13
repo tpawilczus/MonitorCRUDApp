@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>All monitors</title>
+</head>
+<body>
+
+<h2>Monitors from (in memory) DB</h2>
+
+<div th:each="monitor : ${allMonitorsFromDB}">
+  <div th:text="${monitor.id}"></div>
+  <div th:text="${monitor.name}"></div>
+  <div th:text="${monitor.size}"></div>
+  <div th:text="${monitor.refreshRate}"></div>
+  <div th:text="${monitor.user}"></div>
+  <a th:href="@{/monitor/delete/{id}(id=${monitor.id})}" >Delete</a>
+  <a th:href="@{/monitor/edit/{id}(id=${monitor.id})}">Update</a>
+</div>
+<a th:href = "@{/monitor/add}"> New Monitor</a>
+
+
+</div>
+
+</body>
+</html>
